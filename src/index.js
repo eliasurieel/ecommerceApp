@@ -1,23 +1,30 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { CategoryItem, Header } from './components';
-import CATEGORIES from './constants/data/categories.json'
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { Header } from './components';
+import { Categories, Products } from './screens';
+import { useState } from 'react';
 
 
 export default function App() {
-    const onSelectCategory = (categoryId) =>{
-        console.warn({ categoryId })
+    const [isCategorySelected, setIsCategorySelected] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
+    const headerTitle = isCategorySelected ? 'Products' : 'Categories';
+
+    const onHandleSelectCategory = (categoryId) => {
+        setSelectedCategory(categoryId);
+    }
+    const onHandleNavigate = () =>{
+        setIsCategorySelected(!isCategorySelected);
+        setSelectedCategory(null);
     }
   return (
     <View style={styles.container}>
-        <Header title= "Categories" />
-        <FlatList
-        data={CATEGORIES}
-        style={styles.categoryContainer}
-        contentContainerStyle={styles.listCategory}
-        renderItem={({item})=> <CategoryItem {... item} onSelectCategory={onSelectCategory} />}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator = {false}
-        />
+        <Header title= {headerTitle} />
+        {isCategorySelected ? (
+        <Products onHandleGoBack={onHandleNavigate} /> 
+        ): ( 
+        <Categories onSelectCategory={onHandleSelectCategory} />
+        )}
     </View>
   );
 }
@@ -25,13 +32,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  categoryContainer: {
-    marginTop: 20,
-    marginHorizontal: 10,
-  },
-  listCategory:{
-    gap:14,
   },
 });
