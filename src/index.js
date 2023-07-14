@@ -12,8 +12,9 @@ export default function App() {
 
     const onHandleSelectCategory = (categoryId) => {
         setSelectedCategory(categoryId);
+        setIsCategorySelected(!isCategorySelected);
     }
-    const onHandleNavigate = () =>{
+    const onHandleNavigate = () => {
         setIsCategorySelected(!isCategorySelected);
         setSelectedCategory(null);
     }
@@ -21,7 +22,7 @@ export default function App() {
     <View style={styles.container}>
         <Header title= {headerTitle} />
         {isCategorySelected ? (
-        <Products onHandleGoBack={onHandleNavigate} /> 
+        <Products onHandleGoBack={onHandleNavigate} categoryId={selectedCategory}/> 
         ): ( 
         <Categories onSelectCategory={onHandleSelectCategory} />
         )}
