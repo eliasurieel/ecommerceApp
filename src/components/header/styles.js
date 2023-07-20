@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     title:{
         fontSize: 20,
         color: COLORS.text,
-        fontWeight: 'bold'
-
+        fontFamily:'Inter-Bold',
     }
 });
