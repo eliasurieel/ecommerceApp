@@ -14,7 +14,6 @@ function Product({ onHandleGoBack, categorySelected }) {
   const onHandleChangeText = (text) => {
     setSearch(text);
     filteredBySearch(text);
-    console.warn(text)
   };
   const onHandleFocus = () => {};
 
@@ -36,7 +35,6 @@ function Product({ onHandleGoBack, categorySelected }) {
     setFilteredProducts([]);
   };
 
-  console.warn(filteredProducts)
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.goBack} onPress={onHandleGoBack}>
