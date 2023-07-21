@@ -5,6 +5,10 @@ import { useFonts } from 'expo-font'
 import { useState } from 'react';
 import { COLORS } from './themes';
 
+const categoryDefault ={
+  categoryId: null,
+  color: COLORS.primary
+}
 
 export default function App() {
     const [loaded] = useFonts({
@@ -14,17 +18,17 @@ export default function App() {
       'Inter-Bold': require('../assets/fonts/Inter-Bold.ttf'),
     })
     const [isCategorySelected, setIsCategorySelected] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(categoryDefault);
 
     const headerTitle = isCategorySelected ? 'Products' : 'Categories';
 
-    const onHandleSelectCategory = (categoryId) => {
-        setSelectedCategory(categoryId);
+    const onHandleSelectCategory = ({categoryId, color}) => {
+        setSelectedCategory({categoryId, color});
         setIsCategorySelected(!isCategorySelected);
     }
     const onHandleNavigate = () => {
-        setIsCategorySelected(!isCategorySelected);
-        setSelectedCategory(null);
+        setIsCategorySelected(false);
+        setSelectedCategory(categoryDefault);
     }
 
     if(!loaded){
@@ -37,9 +41,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-        <Header title= {headerTitle} />
+        <Header title= {headerTitle} style={{ backgroundColor: selectedCategory.color }} />
         {isCategorySelected ? (
-        <Products onHandleGoBack={onHandleNavigate} categoryId={selectedCategory}/> 
+        <Products onHandleGoBack={onHandleNavigate} categorySelected={selectedCategory}/> 
         ): ( 
         <Categories onSelectCategory={onHandleSelectCategory} />
         )}
