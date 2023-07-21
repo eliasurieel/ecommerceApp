@@ -6,7 +6,8 @@ import { Input } from '../../components';
 import { Ionicons } from '@expo/vector-icons';
 import PRODUCTS from '../../constants/data/products.json';
 
-function Product({ onHandleGoBack, categorySelected }) {
+function Product({ navigation, route }) {
+  const { categoryId, color } = route.params
   const [search, setSearch] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [borderColor, setBorderColor] = useState(COLORS.primary);
@@ -18,7 +19,7 @@ function Product({ onHandleGoBack, categorySelected }) {
   const onHandleFocus = () => {};
 
   const filteredProductsByCategory = PRODUCTS.filter(
-    (product) => product.categoryId === categorySelected.categoryId
+    (product) => product.categoryId === categoryId
   );
 
   const filteredBySearch = (query) => {
@@ -37,10 +38,10 @@ function Product({ onHandleGoBack, categorySelected }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.goBack} onPress={onHandleGoBack}>
+      {/* <TouchableOpacity style={styles.goBack}>
         <Ionicons name="arrow-back-circle" size={34} color={COLORS.black} />
         <Text style={styles.goBackText}>Go back</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.header}>
         <Input
           onHandleBlur={onHandleBlur}
@@ -50,14 +51,14 @@ function Product({ onHandleGoBack, categorySelected }) {
           placeholder="Search"
           borderColor={borderColor}
         />
-        <Ionicons onPress={clearSearch} name="close-circle" size={34} color={COLORS.black} />
+        <Ionicons style={styles.clearIcon} onPress={clearSearch} name="close-circle" size={34} color={COLORS.black} />
       </View>
       <FlatList
         style={styles.products}
         data={ search.length > 0 ? filteredProducts : filteredProductsByCategory}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => null} style={styles.productContainer}>
-            <ImageBackground source={{uri: item.image}} style={[styles.productImage,{backgroundColor: categorySelected.color}]} />
+            <ImageBackground source={{uri: item.image}} style={[styles.productImage,{backgroundColor: color}]} />
             <View style={styles.productDetail}>
             <Text style={styles.productName} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
             <Text style={styles.productPrice}>{`${item.currency.code} ${item.price}`}</Text>

@@ -57,4 +57,7 @@ export const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:"bold",
     },
+    clearIcon:{
+        paddingTop: 20,
+    },
 })
