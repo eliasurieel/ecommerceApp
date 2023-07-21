@@ -6,7 +6,7 @@ const Input =({
     borderColor,
     onHandleFocus,
     onHandleBlur,
-    onhandleChangeText,
+    onHandleChangeText,
     value,
     ...props
 }) => {
@@ -17,7 +17,7 @@ const Input =({
             style={[styles.input, {borderColor}]}
             onFocus={onHandleFocus}
             onBlur={onHandleBlur}
-            onChangeText={onhandleChangeText}
+            onChangeText={onHandleChangeText}
             autoCorrect={false}
             autoCapitalize="none"
             cursorColor={borderColor}

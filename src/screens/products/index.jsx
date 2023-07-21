@@ -14,6 +14,7 @@ function Product({ onHandleGoBack, categorySelected }) {
   const onHandleChangeText = (text) => {
     setSearch(text);
     filteredBySearch(text);
+    console.warn(text)
   };
   const onHandleFocus = () => {};
 
@@ -35,6 +36,7 @@ function Product({ onHandleGoBack, categorySelected }) {
     setFilteredProducts([]);
   };
 
+  console.warn(filteredProducts)
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.goBack} onPress={onHandleGoBack}>
@@ -44,7 +46,7 @@ function Product({ onHandleGoBack, categorySelected }) {
       <View style={styles.header}>
         <Input
           onHandleBlur={onHandleBlur}
-          onHandleChangeText={onHandleChangeText}
+          onHandleChangeText={(e) => onHandleChangeText(e) }
           onHandleFocus={onHandleFocus}
           value={search}
           placeholder="Search"
@@ -54,7 +56,7 @@ function Product({ onHandleGoBack, categorySelected }) {
       </View>
       <FlatList
         style={styles.products}
-        data={search.length > 0 ? filteredProducts : filteredProductsByCategory}
+        data={ search.length > 0 ? filteredProducts : filteredProductsByCategory}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => null} style={styles.productContainer}>
             <ImageBackground source={{uri: item.image}} style={[styles.productImage,{backgroundColor: categorySelected.color}]} />
