@@ -5,6 +5,8 @@ import { useFonts } from 'expo-font'
 import { useState } from 'react';
 import { COLORS } from './themes';
 import RootNavigator from './navigation';
+import { Provider } from 'react-redux';
+import { store } from './store'
 
 // const categoryDefault ={
 //   categoryId: null,
@@ -41,7 +43,9 @@ export default function App() {
     }
 
   return (
+    <Provider store={store}>
     <RootNavigator />
+    </Provider>
   );
 }
 
