@@ -1,12 +1,19 @@
 import { View, Text, Image } from "react-native";
-import PRODUCTS from '../../constants/data/products.json'
-
+import { addToCart } from "../../store/cart/cart.slice";
 import { styles } from './styles'
+import { useSelector, useDispatch } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 function ProductDetail({ navigation, route }){
+    const dispatch = useDispatch()
     const { color, productId } = route.params
+    const products = useSelector((state) => state.products.data)
 
-    const product = PRODUCTS.find((product) => product.id === productId)
+    const product = products.find((product) => product.id === productId)
+
+    const onAddToCart = () => {
+        dispatch(addToCart(product))
+    };
     return(
         <View style={styles.container}>
             <View style={[styles.containerImage, {backgroundColor: color}]}>
@@ -16,6 +23,11 @@ function ProductDetail({ navigation, route }){
             <Text style={styles.name}>{product.name}</Text>
             <Text style={styles.description}>{product.description}</Text>
             <Text style={styles.price}>USD {product.price}</Text>
+            <View style={styles.containerButton}>
+                <TouchableOpacity onPress={onAddToCart} style={styles.addToCartButton}>
+                    <Text style={styles.addToCartText}>Add to cart</Text>
+                </TouchableOpacity>
+            </View>
             </View>
         </View>
     )

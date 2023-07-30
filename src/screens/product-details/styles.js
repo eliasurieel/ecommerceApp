@@ -29,4 +29,17 @@ export const styles = StyleSheet.create({
     description:{
         fontSize: 14,
     },
+    containerButton:{},
+    addToCartButton:{
+        width:'100%',
+        backgroundColor: COLORS.primary,
+        padding:15,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    addToCartText:{
+        fontSize: 16,
+        color: COLORS.white,
+    },
 })
