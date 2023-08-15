@@ -5,11 +5,13 @@ import { COLORS } from '../../themes';
 import { Input } from '../../components';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
+import { useGetProductsByCategoryQuery } from '../../store/products/api';
 
 function Product({ navigation, route }) {
   const { categoryId, color } = route.params
   const [search, setSearch] = useState('');
-  const products = useSelector((state) => state.products.data)
+  // const products = useSelector((state) => state.products.data)
+  const { data, error, isLoading } = useGetProductsByCategoryQuery(categoryId)
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [borderColor, setBorderColor] = useState(COLORS.primary);
   const onHandleBlur = () => {};
@@ -19,7 +21,7 @@ function Product({ navigation, route }) {
   };
   const onHandleFocus = () => {};
 
-  const filteredProductsByCategory = products.filter(
+  const filteredProductsByCategory = data?.filter(
     (product) => product.categoryId === categoryId
   );
 
