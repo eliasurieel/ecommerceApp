@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native";
 import { addToCart } from "../../store/cart/cart.slice";
 import { styles } from './styles'
 import { useSelector, useDispatch } from "react-redux";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 
 function ProductDetail({ navigation, route }){
     const dispatch = useDispatch()
@@ -12,7 +12,7 @@ function ProductDetail({ navigation, route }){
     const product = products.find((product) => product.id === productId)
 
     const onAddToCart = () => {
-        dispatch(addToCart(product))
+        dispatch(addToCart(product)) 
     };
     return(
         <View style={styles.container}>
