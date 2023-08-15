@@ -60,4 +60,9 @@ export const styles = StyleSheet.create({
     clearIcon:{
         paddingTop: 20,
     },
+    containerLoader:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
 })

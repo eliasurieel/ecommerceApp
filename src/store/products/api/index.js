@@ -13,8 +13,16 @@ export const productsApi = createApi({
           id: key,
           ...response[key],
             }))
+        }),
+        getProductById: builder.query({
+          query:(productId) => `/products.json?orderBy="id"&equalTo=${productId}`,
+          transformResponse: (response) =>
+          Object.keys(response).map((key) => ({
+          id: key,
+          ...response[key],
+            }))
         })
     })
 })
 
-export const { useGetProductsByCategoryQuery } = productsApi
+export const { useGetProductsByCategoryQuery, useGetProductByIdQuery } = productsApi
