@@ -20,9 +20,9 @@ export const productsApi = createApi({
           Object.keys(response).map((key) => ({
           id: key,
           ...response[key],
-            }))
-        })
-    })
+            })),
+        }),
+    }),
 })
 
 export const { useGetProductsByCategoryQuery, useGetProductByIdQuery } = productsApi

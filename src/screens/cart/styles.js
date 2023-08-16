@@ -6,6 +6,15 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    emptyCartContainer:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptyCartText:{
+        fontWeight: '500',
+        fontSize: 16,
+    },
     listContainer:{
         flex: 1,
         backgroundColor: COLORS.white,
@@ -37,7 +46,7 @@ export const styles = StyleSheet.create({
     totalText: {
         fontWeight: 'bold'
     },
-    totalPrice: {
+    totalPriceText: {
         fontWeight: 'bold'
     },
 })
