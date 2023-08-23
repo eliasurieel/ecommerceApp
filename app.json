@@ -24,6 +24,12 @@
           "initialOrientation": "DEFAULT"
         }
 
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photoPermission": "The app access your photos to let you share them whit your friends"
+        }
       ]
     ],
     "android": {
