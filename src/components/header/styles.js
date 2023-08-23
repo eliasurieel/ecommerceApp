@@ -44,4 +44,5 @@ export const styles = StyleSheet.create({
         color: COLORS.text,
         fontFamily:'Inter-Bold',
     },
+    
 });

@@ -1,17 +1,50 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import { Settings } from "../screens";
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons'
+import { Address, Profile, Settings } from "../screens";
+import { COLORS } from '../themes';
 
-const Stack = createStackNavigator()
+const Stack = createNativeStackNavigator()
 
 const SettingsNavigator = () => {
-    return(
+    return (
         <Stack.Navigator initialRouteName="Settings" 
-        screenOptions={{
-            headerShown: false,
-        }}>
+        screenOptions={({navigation}) => ({
+            headerStyle:{
+                backgroundColor: COLORS.primary,
+                height: 80,
+            },
+            headerTitleStyle:{
+                fontWeight: 'bold',
+                fontSize: 16,
+            },
+            headerTintColor: COLORS.white,
+            animation: 'fade_from_bottom',
+            headerLeft: () => (
+                <TouchableOpacity style={styles.goBack} onPress={() => navigation.goBack()}>
+                  <Ionicons name="arrow-back-circle" size={30} color={COLORS.white} />
+                </TouchableOpacity>
+              ),
+        })}>
             <Stack.Screen name="Settings" component={Settings}/>
-        </Stack.Navigator>
+            <Stack.Screen name="Profile" component={Profile}/>
+            <Stack.Screen name="Address" component={Address} />
+        </Stack.Navigator >
     )
 }
+
+const styles = StyleSheet.create({
+    goBack: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginRight: Platform.OS === 'android' ? 15 : 0,
+    },
+    goBackText: {
+      fontSize: 14,
+      color: COLORS.text,
+    },
+  });
+
+
 
 export default SettingsNavigator
