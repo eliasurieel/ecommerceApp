@@ -8,13 +8,13 @@ export const settingsApi = createApi({
     endpoints: (builder) => ({
         getProfile: builder.query({
             query: ({localId}) => ({
-                url: `/users/${localId}/profile.json`,
+                url: `/users/${localId}.json`,
                 method: 'GET',
             }),
         }),
         updateImageProfile: builder.mutation({
             query: ({ localId, image }) => ({
-                url: `/users/${localId}/profile.json`,
+                url: `/users/${localId}.json`,
                 method: 'PATCH',
                 body: { profileImage: image },
             }),
